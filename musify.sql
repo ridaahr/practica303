@@ -2,6 +2,22 @@ DROP DATABASE IF EXISTS musify;
 CREATE DATABASE musify;
 USE musify;
 
+CREATE TABLE disquera (
+    id INT PRIMARY KEY,
+    nombre VARCHAR(100)
+);
+
+CREATE TABLE genero (
+    id INT PRIMARY KEY,
+    nombre VARCHAR(100)
+);
+
+CREATE TABLE album (
+    id INT PRIMARY KEY,
+    nombre VARCHAR(100),
+    numero_canciones INT
+);
+
 CREATE TABLE artista (
     id INT PRIMARY KEY,
     nombre_artistico VARCHAR(100),
@@ -13,36 +29,19 @@ CREATE TABLE artista (
 CREATE TABLE cancion (
     id INT PRIMARY KEY,
     nombre VARCHAR(100),
-    duracion DOUBLE,
+    duracion TIME,
     id_genero INT,
     id_album INT,
     FOREIGN KEY (id_genero) REFERENCES genero(id),
     FOREIGN KEY (id_album) REFERENCES album(id)
 );
 
-CREATE TABLE album (
-    id INT PRIMARY KEY,
-    nombre VARCHAR(100),
-    numero_canciones INT
-);
-
-CREATE TABLE disquera (
-    id INT PRIMARY KEY,
-    nombre VARCHAR(100)
-);
-
-CREATE TABLE genero (
-    id INT PRIMARY KEY,
-    nombre VARCHAR(100)
-);
-
-
 CREATE TABLE usuario (
     id INT PRIMARY KEY,
     nombre VARCHAR(100),
     contraseña VARCHAR(100),
     email VARCHAR(100),
-    tipo ENUM('Premium', 'Gratuito) NOT NULL
+    tipo ENUM('Premium', 'Gratuito') NOT NULL
 );
 
 CREATE TABLE playlist (
